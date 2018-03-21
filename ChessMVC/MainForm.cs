@@ -62,7 +62,7 @@ namespace ChessMVC
                     if (this.board.SelectedFigure != null)
                     {
                         Figure selectedFigure = this.board.Figures[this.board.SelectedFigure.X, this.board.SelectedFigure.Y];
-                        if (selectedFigure.GetAvailableCells(this.board.SelectedFigure, this.board).Contains(new Cell(x, y)))
+                        if (selectedFigure.GetAvailableCells().Contains(new Cell(x, y)))
                         {
                             cellColor = (x + y) % 2 == 0 ? System.Drawing.Color.Khaki : System.Drawing.Color.DarkKhaki;
                         }

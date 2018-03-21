@@ -22,25 +22,26 @@ namespace ChessMVC
             {
                 throw new Exception();
             }
-            if (figure.GetAvailableCells(from, board).Contains(to) == false)
+            if (figure.GetAvailableCells().Contains(to) == false)
             {
-                throw new Exception();
+                throw new Exception("Can't move to this cell");
             }
             Figure other = this.board.Figures[to.X, to.Y];
             if (other != null)
             {
                 if (figure.Color != other.Color)
                 {
-                    this.board.EatenFigures.Add(other);
+                    this.board.EatFigure(other);
                 }
                 else
                 {
-                    throw new Exception();
+                    throw new Exception("Can't eat own figure");
                 }
             }
-            this.board.Figures[from.X, from.Y] = null;
-            this.board.Figures[to.X, to.Y] = figure;
+            this.board.ClearField(new Cell(from.X, from.Y));
+            this.board.PutFigureOnField(new Cell(to.X, to.Y), figure);
             this.board.SelectedFigure = null;
+            this.board.NextTurn = this.board.NextTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
             this.board.FireUpdate();
         }
 
@@ -49,7 +50,11 @@ namespace ChessMVC
             Figure figure = this.board.Figures[cell.X, cell.Y];
             if (figure == null)
             {
-                throw new Exception();
+                throw new Exception("Please select " + this.board.NextTurn + " figure");
+            }
+            if (figure.Color != this.board.NextTurn)
+            {
+                throw new Exception("Please select " + this.board.NextTurn + " figure");
             }
             this.board.SelectedFigure = cell;
             this.board.FireUpdate();

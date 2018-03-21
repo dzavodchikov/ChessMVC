@@ -9,12 +9,13 @@ namespace ChessMVC
 {
     public class Rook : Figure
     {
-        public Rook(Color color)
+        public Rook(Color color, ChessBoard chessBoard)
         {
             this.Color = color;
+            this.ChessBoard = chessBoard;
         }
 
-        public override List<Cell> GetAvailableCells(Cell cell, ChessBoard board)
+        public override List<Cell> GetAvailableCells()
         {
             throw new NotImplementedException();
         }

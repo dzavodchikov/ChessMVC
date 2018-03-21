@@ -9,13 +9,16 @@ namespace ChessMVC
 {
     public class Pawn : Figure
     {
-        public Pawn(Color color)
+        public Pawn(Color color, ChessBoard chessBoard)
         {
             this.Color = color;
+            this.ChessBoard = chessBoard;
         }
 
-        public override List<Cell> GetAvailableCells(Cell cell, ChessBoard board)
+        public override List<Cell> GetAvailableCells()
         {
+            Cell cell = this.Cell;
+            ChessBoard board = this.ChessBoard;
             List<Cell> availableCells = new List<Cell>();
             if (this.Color == Color.WHITE)
             {

@@ -10,7 +10,9 @@ namespace ChessMVC
     public abstract class Figure
     {
         public Color Color { get; set; }
-        public abstract List<Cell> GetAvailableCells(Cell cell, ChessBoard board);
+        public Cell Cell { get; set; }
+        public ChessBoard ChessBoard { get; set; }
+        public abstract List<Cell> GetAvailableCells();
         // FIXME 
         public abstract Bitmap GetImage();
     }

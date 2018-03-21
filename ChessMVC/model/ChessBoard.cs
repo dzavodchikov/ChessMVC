@@ -10,38 +10,57 @@ namespace ChessMVC
     {
         public static readonly int SIZE = 8;
 
+        public Color NextTurn { get; set; }
+        public Figure[,] Figures { get; set; }
+        public Cell SelectedFigure { get; set; }
+        public List<Figure> EatenFigures { get; set; }
+
+        public event ChessBoardChanged OnChanged;
+
         public ChessBoard()
         {
             this.Figures = new Figure[SIZE, SIZE];
             this.SelectedFigure = null;
             this.EatenFigures = new List<Figure>();
+            this.NextTurn = Color.WHITE;
             for (int x = 0; x < SIZE; x++)
             {
-                this.Figures[x, 1] = new Pawn(Color.WHITE);
-                this.Figures[x, 6] = new Pawn(Color.BLACK);
+                this.PutFigureOnField(new Cell(x, 1), new Pawn(Color.WHITE, this));
+                this.PutFigureOnField(new Cell(x, 6), new Pawn(Color.BLACK, this));
             }
-            this.Figures[0, 0] = new Rook(Color.WHITE);
-            this.Figures[7, 0] = new Rook(Color.WHITE);
-            this.Figures[0, 7] = new Rook(Color.BLACK);
-            this.Figures[7, 7] = new Rook(Color.BLACK);
-            this.Figures[1, 0] = new Knight(Color.WHITE);
-            this.Figures[6, 0] = new Knight(Color.WHITE);
-            this.Figures[1, 7] = new Knight(Color.BLACK);
-            this.Figures[6, 7] = new Knight(Color.BLACK);
-            this.Figures[2, 0] = new Bishop(Color.WHITE);
-            this.Figures[5, 0] = new Bishop(Color.WHITE);
-            this.Figures[2, 7] = new Bishop(Color.BLACK);
-            this.Figures[5, 7] = new Bishop(Color.BLACK);
-            this.Figures[3, 0] = new Queen(Color.WHITE);
-            this.Figures[4, 0] = new King(Color.WHITE);
-            this.Figures[3, 7] = new Queen(Color.BLACK);
-            this.Figures[4, 7] = new King(Color.BLACK);
+            this.PutFigureOnField(new Cell(0, 0), new Rook(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(7, 0), new Rook(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(0, 7), new Rook(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(7, 7), new Rook(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(1, 0), new Knight(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(6, 0), new Knight(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(1, 7), new Knight(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(6, 7), new Knight(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(2, 0), new Bishop(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(5, 0), new Bishop(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(2, 7), new Bishop(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(5, 7), new Bishop(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(3, 0), new Queen(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(4, 0), new King(Color.WHITE, this));
+            this.PutFigureOnField(new Cell(3, 7), new Queen(Color.BLACK, this));
+            this.PutFigureOnField(new Cell(4, 7), new King(Color.BLACK, this));
         }
 
-        public Figure[,] Figures { get; set; }
-        public Cell SelectedFigure { get; set; }
-        public List<Figure> EatenFigures { get; set; } 
-        public event ChessBoardChanged OnChanged;
+        public void PutFigureOnField(Cell cell, Figure figure)
+        {
+            figure.Cell = cell;
+            this.Figures[cell.X, cell.Y] = figure;
+        }
+
+        public void ClearField(Cell cell)
+        {
+            this.Figures[cell.X, cell.Y] = null;
+        }
+
+        public void EatFigure(Figure figure)
+        {
+            this.EatenFigures.Add(figure);
+        }
 
         public void FireUpdate()
         {
