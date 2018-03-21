@@ -58,8 +58,16 @@ namespace ChessMVC
             {
                 for (int y = 0; y < ChessBoard.SIZE; y++)
                 {
-
-                    SolidBrush myBrush = new SolidBrush((x + y) % 2 == 0 ? System.Drawing.Color.Gray : System.Drawing.Color.DarkGray);
+                    System.Drawing.Color cellColor = (x + y) % 2 == 0 ? System.Drawing.Color.Gray : System.Drawing.Color.DarkGray;
+                    if (this.board.SelectedFigure != null)
+                    {
+                        Figure selectedFigure = this.board.Figures[this.board.SelectedFigure.X, this.board.SelectedFigure.Y];
+                        if (selectedFigure.GetAvailableCells(this.board.SelectedFigure, this.board).Contains(new Cell(x, y)))
+                        {
+                            cellColor = (x + y) % 2 == 0 ? System.Drawing.Color.Khaki : System.Drawing.Color.DarkKhaki;
+                        }
+                    }
+                    SolidBrush myBrush = new SolidBrush(cellColor);
                     e.Graphics.FillRectangle(myBrush, new Rectangle(x * CELL_SIZE, BOARD_SIZE - y * CELL_SIZE, CELL_SIZE, CELL_SIZE));
                     Figure figure = board.Figures[x, y];
                     if (figure != null)
