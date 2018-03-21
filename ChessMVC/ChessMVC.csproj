@@ -66,15 +66,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\Queen.cs" />
     <Compile Include="model\Rook.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="resources\Rook.png" />
+    <None Include="resources\Queen.png" />
+    <None Include="resources\Knight.png" />
+    <None Include="resources\King.png" />
+    <None Include="resources\Pawn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,6 +97,47 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\black_bishop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Bishop.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\black_king.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\black_knight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\black_pawn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\black_queen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\black_rook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\white_bishop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\white_king.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\white_knight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\white_pawn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\white_queen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\white_rook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

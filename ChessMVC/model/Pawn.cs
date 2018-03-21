@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace ChessMVC
             this.Color = color;
         }
 
-        public override List<Cell> getAvailableCells(Cell cell, ChessBoard board)
+        public override List<Cell> GetAvailableCells(Cell cell, ChessBoard board)
         {
             List<Cell> availableCells = new List<Cell>();
             if (this.Color == Color.WHITE)
@@ -49,6 +50,19 @@ namespace ChessMVC
                 }
             }
             return availableCells;
+        }
+
+        public override Bitmap GetImage()
+        {
+            if (this.Color == Color.WHITE)
+            {
+                return Resources.white_pawn;
+            }
+            else
+            {
+                return Resources.black_pawn;
+            }
+            
         }
     }
 }

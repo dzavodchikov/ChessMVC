@@ -22,7 +22,7 @@ namespace ChessMVC
             {
                 throw new Exception();
             }
-            if (figure.getAvailableCells(from, board).Contains(to) == false)
+            if (figure.GetAvailableCells(from, board).Contains(to) == false)
             {
                 throw new Exception();
             }
@@ -40,6 +40,7 @@ namespace ChessMVC
             }
             this.board.Figures[from.X, from.Y] = null;
             this.board.Figures[to.X, to.Y] = figure;
+            this.board.SelectedFigure = null;
             this.board.FireUpdate();
         }
 
