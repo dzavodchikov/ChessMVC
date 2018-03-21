@@ -76,6 +76,14 @@ namespace ChessMVC
                     }
                 }
             } 
+            for (int i = 0; i < this.board.EatenFigures.Count; i++)
+            {
+                Figure figure = this.board.EatenFigures[i];
+                if (figure != null)
+                {
+                    e.Graphics.DrawImage(figure.GetImage(), i * CELL_SIZE, BOARD_SIZE + 2 * CELL_SIZE);
+                }
+            }
         }
 
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
@@ -108,6 +116,12 @@ namespace ChessMVC
                 }
                 
             }
+        }
+
+        private void showTurnsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TurnsHistoryForm turnsHistoryForm = new TurnsHistoryForm(this.board);
+            turnsHistoryForm.Show();
         }
     }
 }

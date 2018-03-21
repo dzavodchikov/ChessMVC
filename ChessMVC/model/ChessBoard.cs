@@ -13,16 +13,18 @@ namespace ChessMVC
         public Color NextTurn { get; set; }
         public Figure[,] Figures { get; set; }
         public Cell SelectedFigure { get; set; }
-        public List<Figure> EatenFigures { get; set; }
+        public IList<Figure> EatenFigures { get; set; }
+        public IList<String> Turns { get; set; } 
 
         public event ChessBoardChanged OnChanged;
 
         public ChessBoard()
         {
+            this.NextTurn = Color.WHITE;
             this.Figures = new Figure[SIZE, SIZE];
             this.SelectedFigure = null;
             this.EatenFigures = new List<Figure>();
-            this.NextTurn = Color.WHITE;
+            this.Turns = new List<String>();
             for (int x = 0; x < SIZE; x++)
             {
                 this.PutFigureOnField(new Cell(x, 1), new Pawn(Color.WHITE, this));

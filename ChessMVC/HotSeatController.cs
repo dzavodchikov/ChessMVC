@@ -41,8 +41,25 @@ namespace ChessMVC
             this.board.ClearField(new Cell(from.X, from.Y));
             this.board.PutFigureOnField(new Cell(to.X, to.Y), figure);
             this.board.SelectedFigure = null;
+            this.board.Turns.Add(this.CreateTurn(figure, from, to));
             this.board.NextTurn = this.board.NextTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
             this.board.FireUpdate();
+        }
+
+        private string CreateTurn(Figure figure, Cell from, Cell to)
+        {
+            return figure.Color + " " + figure.GetType().Name + " " + GetFieldAlpha(from.X) + GetFieldNum(from.Y) + " -> " + GetFieldAlpha(to.X) + GetFieldNum(to.Y);
+        }
+
+        private char GetFieldAlpha(int x)
+        {
+            byte b = (byte) (65 + x);
+            return (char) b;
+        }
+
+        private int GetFieldNum(int x)
+        {
+            return x + 1;
         }
 
         public void Select(Cell cell)
