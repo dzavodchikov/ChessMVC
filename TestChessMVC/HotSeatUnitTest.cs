@@ -27,6 +27,7 @@ namespace TestChessMVC
             view.Move(new Square(3, 3));
             Assert.AreEqual(2, viewUpdateCount);
 
+            Assert.IsNull(board.Figures[3, 1]);
             Assert.IsInstanceOfType(board.Figures[3, 3], typeof(Pawn));
             Assert.AreEqual(Color.WHITE, board.Figures[3, 3].Color);
 
@@ -36,6 +37,7 @@ namespace TestChessMVC
             view.Move(new Square(4, 4));
             Assert.AreEqual(4, viewUpdateCount);
 
+            Assert.IsNull(board.Figures[4, 6]);
             Assert.IsInstanceOfType(board.Figures[4, 4], typeof(Pawn));
             Assert.AreEqual(Color.BLACK, board.Figures[4, 4].Color);
 
@@ -45,10 +47,12 @@ namespace TestChessMVC
             view.Move(new Square(4, 4));
             Assert.AreEqual(6, viewUpdateCount);
 
+            Assert.IsNull(board.Figures[3, 3]);
             Assert.IsInstanceOfType(board.Figures[4, 4], typeof(Pawn));
             Assert.AreEqual(Color.WHITE, board.Figures[4, 4].Color);
             Assert.AreEqual(1, board.CapturedFigures.Count);
             Assert.IsInstanceOfType(board.CapturedFigures[0], typeof(Pawn));
+            Assert.AreEqual(Color.BLACK, board.CapturedFigures[0].Color);
 
         }
     }
