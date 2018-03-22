@@ -21,7 +21,7 @@ namespace TestChessMVC
                 viewUpdateCount++;
             };
 
-            // White Pawn d2 -> d4
+            // White Pawn moved d2 -> d4
             view.Select(new Square(3, 1));
             Assert.AreEqual(1, viewUpdateCount);
             view.Move(new Square(3, 3));
@@ -30,7 +30,7 @@ namespace TestChessMVC
             Assert.IsInstanceOfType(board.Figures[3, 3], typeof(Pawn));
             Assert.AreEqual(Color.WHITE, board.Figures[3, 3].Color);
 
-            // Black Pawn e7 -> e5
+            // Black Pawn moved e7 -> e5
             view.Select(new Square(4, 6));
             Assert.AreEqual(3, viewUpdateCount);
             view.Move(new Square(4, 4));
@@ -39,7 +39,7 @@ namespace TestChessMVC
             Assert.IsInstanceOfType(board.Figures[4, 4], typeof(Pawn));
             Assert.AreEqual(Color.BLACK, board.Figures[4, 4].Color);
 
-            // White Pawn eat Back Pawn
+            // White Pawn capture Back Pawn
             view.Select(new Square(3, 3));
             Assert.AreEqual(5, viewUpdateCount);
             view.Move(new Square(4, 4));
