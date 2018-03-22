@@ -15,9 +15,9 @@ namespace ChessMVC
             this.board = board;
         }
 
-        public void MoveTo(Square from, Square to)
+        public void MoveTo(Square to)
         {
-            Figure figure = this.board.Figures[from.X, from.Y];
+            Figure figure = this.board.SelectedFigure;
             if (figure == null)
             {
                 throw new Exception();
@@ -26,23 +26,38 @@ namespace ChessMVC
             {
                 throw new Exception("Can't move to this cell");
             }
+            Square from = figure.Square;
             Figure other = this.board.Figures[to.X, to.Y];
             if (other != null)
             {
                 if (figure.Color != other.Color)
                 {
-                    this.board.EatFigure(other);
+                    this.board.CaptureFigure(other);
                 }
                 else
                 {
                     throw new Exception("Can't eat own figure");
                 }
             }
-            this.board.ClearSquare(new Square(from.X, from.Y));
+            this.board.ClearSquare(figure.Square);
             this.board.PutFigureOnSquare(new Square(to.X, to.Y), figure);
             this.board.SelectedFigure = null;
             this.board.Turns.Add(this.CreateTurn(figure, from, to));
             this.board.NextTurn = this.board.NextTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
+            this.board.FireUpdate();
+        }
+
+        public void Select(Figure figure)
+        {
+            if (figure == null)
+            {
+                throw new Exception("Please select " + this.board.NextTurn + " figure");
+            }
+            if (figure.Color != this.board.NextTurn)
+            {
+                throw new Exception("Please select " + this.board.NextTurn + " figure");
+            }
+            this.board.SelectedFigure = figure;
             this.board.FireUpdate();
         }
 
@@ -53,8 +68,8 @@ namespace ChessMVC
 
         private char GetFieldAlpha(int x)
         {
-            byte b = (byte) (65 + x);
-            return (char) b;
+            byte b = (byte)(65 + x);
+            return (char)b;
         }
 
         private int GetFieldNum(int x)
@@ -62,19 +77,5 @@ namespace ChessMVC
             return x + 1;
         }
 
-        public void Select(Square square)
-        {
-            Figure figure = this.board.Figures[square.X, square.Y];
-            if (figure == null)
-            {
-                throw new Exception("Please select " + this.board.NextTurn + " figure");
-            }
-            if (figure.Color != this.board.NextTurn)
-            {
-                throw new Exception("Please select " + this.board.NextTurn + " figure");
-            }
-            this.board.SelectedFigure = square;
-            this.board.FireUpdate();
-        }
     }
 }

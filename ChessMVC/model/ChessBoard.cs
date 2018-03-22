@@ -12,8 +12,8 @@ namespace ChessMVC
 
         public Color NextTurn { get; set; }
         public Figure[,] Figures { get; set; }
-        public Square SelectedFigure { get; set; }
-        public IList<Figure> EatenFigures { get; set; }
+        public Figure SelectedFigure { get; set; }
+        public IList<Figure> CapturedFigures { get; set; }
         public IList<String> Turns { get; set; } 
 
         public event ChessBoardChanged OnChanged;
@@ -23,7 +23,7 @@ namespace ChessMVC
             this.NextTurn = Color.WHITE;
             this.Figures = new Figure[SIZE, SIZE];
             this.SelectedFigure = null;
-            this.EatenFigures = new List<Figure>();
+            this.CapturedFigures = new List<Figure>();
             this.Turns = new List<String>();
             for (int x = 0; x < SIZE; x++)
             {
@@ -59,9 +59,9 @@ namespace ChessMVC
             this.Figures[square.X, square.Y] = null;
         }
 
-        public void EatFigure(Figure figure)
+        public void CaptureFigure(Figure figure)
         {
-            this.EatenFigures.Add(figure);
+            this.CapturedFigures.Add(figure);
         }
 
         public void FireUpdate()

@@ -47,8 +47,8 @@ namespace TestChessMVC
 
             Assert.IsInstanceOfType(board.Figures[4, 4], typeof(Pawn));
             Assert.AreEqual(Color.WHITE, board.Figures[4, 4].Color);
-            Assert.AreEqual(1, board.EatenFigures.Count);
-            Assert.IsInstanceOfType(board.EatenFigures[0], typeof(Pawn));
+            Assert.AreEqual(1, board.CapturedFigures.Count);
+            Assert.IsInstanceOfType(board.CapturedFigures[0], typeof(Pawn));
 
         }
     }
