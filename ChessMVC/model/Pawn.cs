@@ -15,44 +15,50 @@ namespace ChessMVC
             this.ChessBoard = chessBoard;
         }
 
-        public override List<Cell> GetAvailableCells()
+        public override IList<Square> GetAvailableMoves()
         {
-            Cell cell = this.Cell;
+            Square cell = this.Square;
             ChessBoard board = this.ChessBoard;
-            List<Cell> availableCells = new List<Cell>();
+            List<Square> availableMoves = new List<Square>();
             if (this.Color == Color.WHITE)
             {
-                if (cell.Y == 1)
+                if (board.Figures[cell.X, cell.Y + 1] == null)
                 {
-                    availableCells.Add(new Cell(cell.X, cell.Y + 2));
+                    if (cell.Y == 1)
+                    {
+                        availableMoves.Add(new Square(cell.X, cell.Y + 2));
+                    }
+                    availableMoves.Add(new Square(cell.X, cell.Y + 1));
                 }
-                availableCells.Add(new Cell(cell.X, cell.Y + 1));
-                if (board.Figures[cell.X + 1, cell.Y + 1] != null)
+                if (cell.X != ChessBoard.SIZE - 1 && board.Figures[cell.X + 1, cell.Y + 1] != null && board.Figures[cell.X + 1, cell.Y + 1].Color != this.Color)
                 {
-                    availableCells.Add(new Cell(cell.X + 1, cell.Y + 1));
+                    availableMoves.Add(new Square(cell.X + 1, cell.Y + 1));
                 }
-                if (board.Figures[cell.X - 1, cell.Y + 1] != null)
+                if (cell.X != 0 && board.Figures[cell.X - 1, cell.Y + 1] != null && board.Figures[cell.X - 1, cell.Y + 1].Color != this.Color)
                 {
-                    availableCells.Add(new Cell(cell.X - 1, cell.Y + 1));
+                    availableMoves.Add(new Square(cell.X - 1, cell.Y + 1));
                 }
             }
             if (this.Color == Color.BLACK)
             {
-                if (cell.Y == 6)
+                if (board.Figures[Square.X, Square.Y - 1] == null)
                 {
-                    availableCells.Add(new Cell(cell.X, cell.Y - 2));
+                    if (cell.Y == 6)
+                    {
+                        availableMoves.Add(new Square(cell.X, cell.Y - 2));
+                    }
+                    availableMoves.Add(new Square(cell.X, cell.Y - 1));
                 }
-                availableCells.Add(new Cell(cell.X, cell.Y - 1));
-                if (board.Figures[cell.X + 1, cell.Y - 1] != null)
+                if (cell.X != ChessBoard.SIZE - 1 && board.Figures[cell.X + 1, cell.Y - 1] != null && board.Figures[cell.X + 1, cell.Y - 1].Color != this.Color)
                 {
-                    availableCells.Add(new Cell(cell.X + 1, cell.Y - 1));
+                    availableMoves.Add(new Square(cell.X + 1, cell.Y - 1));
                 }
-                if (board.Figures[cell.X - 1, cell.Y - 1] != null)
+                if (cell.X != 0 && board.Figures[cell.X - 1, cell.Y - 1] != null && board.Figures[cell.X - 1, cell.Y - 1].Color != this.Color)
                 {
-                    availableCells.Add(new Cell(cell.X - 1, cell.Y - 1));
+                    availableMoves.Add(new Square(cell.X - 1, cell.Y - 1));
                 }
             }
-            return availableCells;
+            return availableMoves;
         }
 
         public override Bitmap GetImage()
@@ -65,7 +71,6 @@ namespace ChessMVC
             {
                 return Resources.black_pawn;
             }
-            
         }
     }
 }

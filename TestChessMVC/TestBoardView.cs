@@ -10,7 +10,7 @@ namespace TestChessMVC
     class TestBoardView : IBoardView
     {
         private ChessBoard board;
-        private Cell selectedFigure;
+        private Square selectedFigure;
 
         public TestBoardView(ChessBoard board)
         {
@@ -20,13 +20,13 @@ namespace TestChessMVC
         public event FigureSelected OnFigureSelected;
         public event FigureMove OnFigureMove;
 
-        public void Select(Cell cell)
+        public void Select(Square cell)
         {
             selectedFigure = cell;
             this.OnFigureSelected(selectedFigure);
         }
 
-        public void Move(Cell cell)
+        public void Move(Square cell)
         {
             this.OnFigureMove(selectedFigure, cell);
         }

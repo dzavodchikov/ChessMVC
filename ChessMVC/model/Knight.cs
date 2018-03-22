@@ -15,7 +15,7 @@ namespace ChessMVC
             this.ChessBoard = chessBoard;
         }
 
-        public override List<Cell> GetAvailableCells()
+        public override IList<Square> GetAvailableMoves()
         {
             throw new NotImplementedException();
         }

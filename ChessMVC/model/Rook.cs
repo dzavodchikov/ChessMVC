@@ -15,9 +15,45 @@ namespace ChessMVC
             this.ChessBoard = chessBoard;
         }
 
-        public override List<Cell> GetAvailableCells()
+        public override IList<Square> GetAvailableMoves()
         {
-            throw new NotImplementedException();
+            Square cell = this.Square;
+            ChessBoard board = this.ChessBoard;
+            List<Square> availableMoves = new List<Square>();
+            for (int dir = 0; dir < 4; dir++)
+            {
+                int x = this.Square.X;
+                int y = this.Square.Y;
+                Figure figure = null;
+                while (figure == null)
+                {
+                    if (dir < 2)
+                    {
+                        if (dir % 2 == 0) { x++; } else { x--; }
+                    }
+                    else
+                    {
+                        if (dir % 2 == 0) { y++; } else { y--; }
+                    }
+                    if (x < 0 || y < 0 || x >= ChessBoard.SIZE || y >= ChessBoard.SIZE)
+                    {
+                        break;
+                    }
+                    figure = this.ChessBoard.Figures[x, y];
+                    if (figure == null)
+                    {
+                        availableMoves.Add(new Square(x, y));
+                    }
+                    else
+                    {
+                        if (figure.Color != this.Color)
+                        {
+                            availableMoves.Add(new Square(x, y));
+                        }
+                    }
+                }
+            }
+            return availableMoves;
         }
 
         public override Bitmap GetImage()

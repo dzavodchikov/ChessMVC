@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ChessMVC
 {
-    public class Cell
+    public class Square
     {
 
-        public Cell(int x, int y)
+        public Square(int x, int y)
         {
             this.X = x;
             this.Y = y;
@@ -20,7 +20,7 @@ namespace ChessMVC
 
         public override bool Equals(object obj)
         {
-            var cell = obj as Cell;
+            var cell = obj as Square;
             return cell != null &&
                    X == cell.X &&
                    Y == cell.Y;

@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Bishop.cs" />
-    <Compile Include="model\Cell.cs" />
+    <Compile Include="model\Square.cs" />
     <Compile Include="model\ChessBoard.cs" />
     <Compile Include="model\Color.cs" />
     <Compile Include="model\Figure.cs" />

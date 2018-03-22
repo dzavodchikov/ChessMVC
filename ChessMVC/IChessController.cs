@@ -8,7 +8,7 @@ namespace ChessMVC
 {
     public interface IChessController
     {
-        void Select(Cell cell);
-        void MoveTo(Cell from, Cell to);
+        void Select(Square cell);
+        void MoveTo(Square from, Square to);
     }
 }

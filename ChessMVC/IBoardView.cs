@@ -12,6 +12,6 @@ namespace ChessMVC
         event FigureMove OnFigureMove;
     }
 
-    public delegate void FigureMove(Cell from, Cell to);
-    public delegate void FigureSelected(Cell cell);
+    public delegate void FigureMove(Square from, Square to);
+    public delegate void FigureSelected(Square cell);
 }

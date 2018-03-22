@@ -62,7 +62,7 @@ namespace ChessMVC
                     if (this.board.SelectedFigure != null)
                     {
                         Figure selectedFigure = this.board.Figures[this.board.SelectedFigure.X, this.board.SelectedFigure.Y];
-                        if (selectedFigure.GetAvailableCells().Contains(new Cell(x, y)))
+                        if (selectedFigure.GetAvailableMoves().Contains(new Square(x, y)))
                         {
                             cellColor = (x + y) % 2 == 0 ? System.Drawing.Color.Khaki : System.Drawing.Color.DarkKhaki;
                         }
@@ -96,7 +96,7 @@ namespace ChessMVC
                 {
                     if (this.board.Figures[x, y] != null)
                     {
-                        this.OnFigureSelected(new Cell(x, y));
+                        this.OnFigureSelected(new Square(x, y));
                     }
                 }
                 catch (Exception ex)
@@ -108,7 +108,7 @@ namespace ChessMVC
             {
                 try
                 {
-                    this.OnFigureMove(this.board.SelectedFigure, new Cell(x, y));
+                    this.OnFigureMove(this.board.SelectedFigure, new Square(x, y));
                 }
                 catch (Exception ex)
                 {

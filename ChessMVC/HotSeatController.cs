@@ -15,14 +15,14 @@ namespace ChessMVC
             this.board = board;
         }
 
-        public void MoveTo(Cell from, Cell to)
+        public void MoveTo(Square from, Square to)
         {
             Figure figure = this.board.Figures[from.X, from.Y];
             if (figure == null)
             {
                 throw new Exception();
             }
-            if (figure.GetAvailableCells().Contains(to) == false)
+            if (figure.GetAvailableMoves().Contains(to) == false)
             {
                 throw new Exception("Can't move to this cell");
             }
@@ -38,15 +38,15 @@ namespace ChessMVC
                     throw new Exception("Can't eat own figure");
                 }
             }
-            this.board.ClearField(new Cell(from.X, from.Y));
-            this.board.PutFigureOnField(new Cell(to.X, to.Y), figure);
+            this.board.ClearSquare(new Square(from.X, from.Y));
+            this.board.PutFigureOnSquare(new Square(to.X, to.Y), figure);
             this.board.SelectedFigure = null;
             this.board.Turns.Add(this.CreateTurn(figure, from, to));
             this.board.NextTurn = this.board.NextTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
             this.board.FireUpdate();
         }
 
-        private string CreateTurn(Figure figure, Cell from, Cell to)
+        private string CreateTurn(Figure figure, Square from, Square to)
         {
             return figure.Color + " " + figure.GetType().Name + " " + GetFieldAlpha(from.X) + GetFieldNum(from.Y) + " -> " + GetFieldAlpha(to.X) + GetFieldNum(to.Y);
         }
@@ -62,9 +62,9 @@ namespace ChessMVC
             return x + 1;
         }
 
-        public void Select(Cell cell)
+        public void Select(Square square)
         {
-            Figure figure = this.board.Figures[cell.X, cell.Y];
+            Figure figure = this.board.Figures[square.X, square.Y];
             if (figure == null)
             {
                 throw new Exception("Please select " + this.board.NextTurn + " figure");
@@ -73,7 +73,7 @@ namespace ChessMVC
             {
                 throw new Exception("Please select " + this.board.NextTurn + " figure");
             }
-            this.board.SelectedFigure = cell;
+            this.board.SelectedFigure = square;
             this.board.FireUpdate();
         }
     }
