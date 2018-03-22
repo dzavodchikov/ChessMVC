@@ -36,7 +36,7 @@ namespace ChessMVC
                 }
                 else
                 {
-                    throw new Exception("Can't eat own figure");
+                    throw new Exception("Can't capture own figure");
                 }
             }
             this.board.ClearSquare(figure.Square);
