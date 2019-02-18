@@ -9,13 +9,12 @@ namespace ChessMVC
 {
     public class Queen : Figure
     {
-        public Queen(Color color, ChessBoard chessBoard)
+        public Queen(Color color)
         {
             this.Color = color;
-            this.ChessBoard = chessBoard;
         }
 
-        public override IList<Square> GetAvailableMoves()
+        public override IList<Square> GetAvailableMoves(ChessBoard board)
         {
             throw new NotImplementedException();
         }

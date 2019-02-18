@@ -22,7 +22,7 @@ namespace ChessMVC
             {
                 throw new Exception();
             }
-            if (figure.GetAvailableMoves().Contains(to) == false)
+            if (figure.GetAvailableMoves(this.board).Contains(to) == false)
             {
                 throw new Exception("Can't move to this cell");
             }

@@ -62,7 +62,7 @@ namespace ChessMVC
                     if (this.board.SelectedFigure != null)
                     {
                         Figure selectedFigure = this.board.SelectedFigure;
-                        if (selectedFigure.GetAvailableMoves().Contains(new Square(x, y)))
+                        if (selectedFigure.GetAvailableMoves(this.board).Contains(new Square(x, y)))
                         {
                             cellColor = (x + y) % 2 == 0 ? System.Drawing.Color.Khaki : System.Drawing.Color.DarkKhaki;
                         }

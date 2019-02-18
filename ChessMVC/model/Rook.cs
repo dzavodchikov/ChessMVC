@@ -9,16 +9,14 @@ namespace ChessMVC
 {
     public class Rook : Figure
     {
-        public Rook(Color color, ChessBoard chessBoard)
+        public Rook(Color color)
         {
             this.Color = color;
-            this.ChessBoard = chessBoard;
         }
 
-        public override IList<Square> GetAvailableMoves()
+        public override IList<Square> GetAvailableMoves(ChessBoard board)
         {
             Square cell = this.Square;
-            ChessBoard board = this.ChessBoard;
             List<Square> availableMoves = new List<Square>();
             for (int dir = 0; dir < 4; dir++)
             {
@@ -39,7 +37,7 @@ namespace ChessMVC
                     {
                         break;
                     }
-                    figure = this.ChessBoard.Figures[x, y];
+                    figure = board.Figures[x, y];
                     if (figure == null)
                     {
                         availableMoves.Add(new Square(x, y));
