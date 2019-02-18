@@ -69,9 +69,19 @@ namespace ChessMVC
             this.OnChanged();
         }
 
+        public bool IsEmpty(int x, int y)
+        {
+            return this.Figures[x, y] == null;
+        }
+
+        public bool IsEnemyFigure(int x, int y, Color color)
+        {
+            return this.Figures[x, y] != null && this.Figures[x, y].Color != color;
+        }
+
         public bool IsEmptyOrEnemyFigure(int x, int y, Color color)
         {
-            return this.Figures[x, y] == null || this.Figures[x, y].Color != color;
+            return IsEmpty(x, y) || IsEnemyFigure(x, y, color);
         }
 
     }

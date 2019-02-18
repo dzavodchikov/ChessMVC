@@ -37,13 +37,13 @@ namespace ChessMVC
                     {
                         break;
                     }
-                    figure = board.Figures[x, y];
-                    if (figure == null)
+                    if (board.IsEmpty(x, y))
                     {
                         availableMoves.Add(new Square(x, y));
                     }
                     else
                     {
+                        figure = board.Figures[x, y];
                         if (figure.Color != this.Color)
                         {
                             availableMoves.Add(new Square(x, y));

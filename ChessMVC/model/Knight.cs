@@ -14,8 +14,6 @@ namespace ChessMVC
             this.Color = color;
         }
 
-        
-
         public override IList<Square> GetAvailableMoves(ChessBoard board)
         {
             Square cell = this.Square;
