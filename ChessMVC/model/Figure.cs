@@ -12,7 +12,6 @@ namespace ChessMVC
         public Color Color { get; set; }
         public Square Square { get; set; }
         public abstract IList<Square> GetAvailableMoves(ChessBoard board);
-        // FIXME 
         public abstract Bitmap GetImage();
     }
 }
