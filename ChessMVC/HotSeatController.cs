@@ -17,6 +17,11 @@ namespace ChessMVC
 
         public void MoveTo(Square to)
         {
+            if (this.board.Winner != null)
+            {
+                throw new Exception("Game finished");
+            }
+            Color currentTurn = this.board.NextTurn;
             Figure figure = this.board.SelectedFigure;
             if (figure == null)
             {
@@ -43,12 +48,41 @@ namespace ChessMVC
             this.board.PutFigureOnSquare(new Square(to.X, to.Y), figure);
             this.board.SelectedFigure = null;
             this.board.Turns.Add(this.CreateTurn(figure, from, to));
-            this.board.NextTurn = this.board.NextTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
+            this.board.NextTurn = currentTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
+            this.checkEndOfGame(currentTurn);
             this.board.FireUpdate();
+        }
+
+        private void checkEndOfGame(Color color)
+        {
+            Figure king = this.getKing(color);
+            foreach (Figure figure in board.Figures)
+            {
+                if (figure != null && figure.Color != color && figure.GetAvailableMoves(this.board).Contains(king.Square))
+                {
+                    this.board.Winner = color == Color.WHITE ? Color.BLACK : Color.WHITE;
+                }
+            }
+        }
+
+        private Figure getKing(Color color)
+        {
+            foreach (Figure figure in board.Figures)
+            {
+                if (figure != null && figure is King && figure.Color == color)
+                {
+                    return figure;
+                }
+            }
+            throw new Exception();
         }
 
         public void Select(Figure figure)
         {
+            if (this.board.Winner != null)
+            {
+                throw new Exception("Game finished");
+            }
             if (figure == null)
             {
                 throw new Exception("Please select " + this.board.NextTurn + " figure");

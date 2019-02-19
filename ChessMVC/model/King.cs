@@ -17,7 +17,8 @@ namespace ChessMVC
 
         public override IList<Square> GetAvailableMoves(ChessBoard board)
         {
-            throw new NotImplementedException();
+            List<Square> availableMoves = new List<Square>();
+            return availableMoves;
         }
 
         public override Bitmap GetImage()

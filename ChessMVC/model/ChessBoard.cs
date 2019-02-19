@@ -15,6 +15,7 @@ namespace ChessMVC
         public Figure SelectedFigure { get; set; }
         public IList<Figure> CapturedFigures { get; set; }
         public IList<String> Turns { get; set; } 
+        public Color? Winner { get; set; }
 
         public event ChessBoardChanged OnChanged;
 

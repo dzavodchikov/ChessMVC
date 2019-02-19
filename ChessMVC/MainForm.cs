@@ -38,6 +38,11 @@ namespace ChessMVC
 
         private void StartNewGame()
         {
+            if (this.board != null)
+            {
+                this.OnFigureSelected -= this.controller.Select;
+                this.OnFigureMove -= this.controller.MoveTo;
+            }
             this.board = new ChessBoard();
             this.board.OnChanged += this.Refresh;
             this.controller = new HotSeatController(this.board);
@@ -92,6 +97,10 @@ namespace ChessMVC
                 e.Graphics.DrawImage(figure.GetImage(), i * CELL_SIZE, BOARD_SIZE + 2 * CELL_SIZE);
             }
             this.scoreLabel.Text = whitePoints + " - " + blackPoints;
+            if (this.board.Winner != null)
+            {
+                MessageBox.Show(this.board.Winner + " wins", "Info", MessageBoxButtons.OK);
+            }
         }
 
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
