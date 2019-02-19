@@ -9,6 +9,7 @@ namespace ChessMVC
 {
     public abstract class Figure
     {
+        public int Points { get; set; }
         public Color Color { get; set; }
         public Square Square { get; set; }
         public abstract IList<Square> GetAvailableMoves(ChessBoard board);

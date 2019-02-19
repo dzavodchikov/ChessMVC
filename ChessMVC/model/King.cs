@@ -11,6 +11,7 @@ namespace ChessMVC
     {
         public King(Color color)
         {
+            this.Points = 100;
             this.Color = color;
         }
 

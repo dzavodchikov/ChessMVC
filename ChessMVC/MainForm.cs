@@ -75,15 +75,23 @@ namespace ChessMVC
                         e.Graphics.DrawImage(figure.GetImage(), x * CELL_SIZE, BOARD_SIZE - y * CELL_SIZE);
                     }
                 }
-            } 
+            }
+            int whitePoints = 0;
+            int blackPoints = 0;
             for (int i = 0; i < this.board.CapturedFigures.Count; i++)
             {
                 Figure figure = this.board.CapturedFigures[i];
-                if (figure != null)
+                if (figure.Color == Color.BLACK)
                 {
-                    e.Graphics.DrawImage(figure.GetImage(), i * CELL_SIZE, BOARD_SIZE + 2 * CELL_SIZE);
+                    whitePoints += figure.Points;
                 }
+                if (figure.Color == Color.WHITE)
+                {
+                    blackPoints += figure.Points;
+                }
+                e.Graphics.DrawImage(figure.GetImage(), i * CELL_SIZE, BOARD_SIZE + 2 * CELL_SIZE);
             }
+            this.scoreLabel.Text = whitePoints + " - " + blackPoints;
         }
 
         private void MainForm_MouseClick(object sender, MouseEventArgs e)

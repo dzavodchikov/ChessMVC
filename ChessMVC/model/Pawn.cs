@@ -11,6 +11,7 @@ namespace ChessMVC
     {
         public Pawn(Color color)
         {
+            this.Points = 1;
             this.Color = color;
         }
 

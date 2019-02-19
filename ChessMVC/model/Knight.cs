@@ -11,6 +11,7 @@ namespace ChessMVC
     {
         public Knight(Color color)
         {
+            this.Points = 3;
             this.Color = color;
         }
 

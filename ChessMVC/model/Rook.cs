@@ -11,6 +11,7 @@ namespace ChessMVC
     {
         public Rook(Color color)
         {
+            this.Points = 5;
             this.Color = color;
         }
 

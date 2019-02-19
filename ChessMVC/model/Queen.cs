@@ -11,6 +11,7 @@ namespace ChessMVC
     {
         public Queen(Color color)
         {
+            this.Points = 9;
             this.Color = color;
         }
 
