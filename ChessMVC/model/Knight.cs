@@ -18,35 +18,35 @@ namespace ChessMVC
         {
             Square cell = this.Square;
             List<Square> availableMoves = new List<Square>();
-            if (cell.X + 1 < ChessBoard.SIZE && cell.Y + 2 < ChessBoard.SIZE && board.IsEmptyOrEnemyFigure(cell.X + 1, cell.Y + 2, this.Color))
+            if (board.IsValid(cell.X + 1, cell.Y + 2) && board.IsEmptyOrEnemyFigure(cell.X + 1, cell.Y + 2, this.Color))
             {
                 availableMoves.Add(new Square(cell.X + 1, cell.Y + 2));
             }
-            if (cell.X - 1 > 0 && cell.Y + 2 < ChessBoard.SIZE && board.IsEmptyOrEnemyFigure(cell.X - 1, cell.Y + 2, this.Color))
+            if (board.IsValid(cell.X - 1, cell.Y + 2) && board.IsEmptyOrEnemyFigure(cell.X - 1, cell.Y + 2, this.Color))
             {
                 availableMoves.Add(new Square(cell.X - 1, cell.Y + 2));
             }
-            if (cell.X + 1 < ChessBoard.SIZE && cell.Y - 2 >= 0 && board.IsEmptyOrEnemyFigure(cell.X + 1, cell.Y - 2, this.Color))
+            if (board.IsValid(cell.X + 1, cell.Y - 2) && board.IsEmptyOrEnemyFigure(cell.X + 1, cell.Y - 2, this.Color))
             {
                 availableMoves.Add(new Square(cell.X + 1, cell.Y - 2));
             }
-            if (cell.X - 1 > 0 && cell.Y - 2 >= 0 && board.IsEmptyOrEnemyFigure(cell.X - 1, cell.Y - 2, this.Color))
+            if (board.IsValid(cell.X - 1, cell.Y - 2) && board.IsEmptyOrEnemyFigure(cell.X - 1, cell.Y - 2, this.Color))
             {
                 availableMoves.Add(new Square(cell.X - 1, cell.Y - 2));
             }
-            if (cell.X + 2 < ChessBoard.SIZE && cell.Y + 1 < ChessBoard.SIZE && board.IsEmptyOrEnemyFigure(cell.X + 2, cell.Y + 1, this.Color))
+            if (board.IsValid(cell.X + 2, cell.Y + 1) && board.IsEmptyOrEnemyFigure(cell.X + 2, cell.Y + 1, this.Color))
             {
                 availableMoves.Add(new Square(cell.X + 2, cell.Y + 1));
             }
-            if (cell.X + 2 < ChessBoard.SIZE && cell.Y - 1 >= 0 && board.IsEmptyOrEnemyFigure(cell.X + 2, cell.Y - 1, this.Color))
+            if (board.IsValid(cell.X + 2, cell.Y - 1) && board.IsEmptyOrEnemyFigure(cell.X + 2, cell.Y - 1, this.Color))
             {
                 availableMoves.Add(new Square(cell.X + 2, cell.Y -1));
             }
-            if (cell.X - 2 >= 0 && cell.Y + 1 < ChessBoard.SIZE && board.IsEmptyOrEnemyFigure(cell.X - 2, cell.Y + 1, this.Color))
+            if (board.IsValid(cell.X - 2, cell.Y + 1) && board.IsEmptyOrEnemyFigure(cell.X - 2, cell.Y + 1, this.Color))
             {
                 availableMoves.Add(new Square(cell.X - 2, cell.Y + 1));
             }
-            if (cell.X - 2 >= 0 && cell.Y - 1 >= 0 && board.IsEmptyOrEnemyFigure(cell.X - 2, cell.Y - 1, this.Color))
+            if (board.IsValid(cell.X - 2, cell.Y - 1) && board.IsEmptyOrEnemyFigure(cell.X - 2, cell.Y - 1, this.Color))
             {
                 availableMoves.Add(new Square(cell.X - 2, cell.Y - 1));
             }

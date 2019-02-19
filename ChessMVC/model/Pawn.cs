@@ -20,7 +20,7 @@ namespace ChessMVC
             List<Square> availableMoves = new List<Square>();
             if (this.Color == Color.WHITE)
             {
-                if (board.IsEmpty(cell.X, cell.Y + 1))
+                if (board.IsValid(cell.X, cell.Y + 1) && board.IsEmpty(cell.X, cell.Y + 1))
                 {
                     if (cell.Y == 1 && board.IsEmpty(cell.X, cell.Y + 2))
                     {
@@ -28,18 +28,18 @@ namespace ChessMVC
                     }
                     availableMoves.Add(new Square(cell.X, cell.Y + 1));
                 }
-                if (cell.X != ChessBoard.SIZE - 1 && board.IsEnemyFigure(cell.X + 1, cell.Y + 1, this.Color))
+                if (board.IsValid(cell.X + 1, cell.Y + 1) && board.IsEnemyFigure(cell.X + 1, cell.Y + 1, this.Color))
                 {
                     availableMoves.Add(new Square(cell.X + 1, cell.Y + 1));
                 }
-                if (cell.X != 0 && board.IsEnemyFigure(cell.X - 1, cell.Y + 1, this.Color))
+                if (board.IsValid(cell.X - 1, cell.Y + 1) && board.IsEnemyFigure(cell.X - 1, cell.Y + 1, this.Color))
                 {
                     availableMoves.Add(new Square(cell.X - 1, cell.Y + 1));
                 }
             }
             if (this.Color == Color.BLACK)
             {
-                if (board.IsEmpty(cell.X, cell.Y - 1))
+                if (board.IsValid(cell.X, cell.Y - 1) && board.IsEmpty(cell.X, cell.Y - 1))
                 {
                     if (cell.Y == 6 && board.IsEmpty(cell.X, cell.Y -2))
                     {
@@ -47,11 +47,11 @@ namespace ChessMVC
                     }
                     availableMoves.Add(new Square(cell.X, cell.Y - 1));
                 }
-                if (cell.X != ChessBoard.SIZE - 1 && board.IsEnemyFigure(cell.X + 1, cell.Y - 1, this.Color))
+                if (board.IsValid(cell.X + 1, cell.Y - 1) && board.IsEnemyFigure(cell.X + 1, cell.Y - 1, this.Color))
                 {
                     availableMoves.Add(new Square(cell.X + 1, cell.Y - 1));
                 }
-                if (cell.X != 0 && board.IsEnemyFigure(cell.X - 1, cell.Y - 1, this.Color))
+                if (board.IsValid(cell.X - 1, cell.Y - 1) && board.IsEnemyFigure(cell.X - 1, cell.Y - 1, this.Color))
                 {
                     availableMoves.Add(new Square(cell.X - 1, cell.Y - 1));
                 }

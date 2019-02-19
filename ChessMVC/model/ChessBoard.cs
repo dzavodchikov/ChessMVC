@@ -69,6 +69,11 @@ namespace ChessMVC
             this.OnChanged();
         }
 
+        public bool IsValid(int x, int y)
+        {
+            return x >= 0 && y >= 0 && x < ChessBoard.SIZE && y < ChessBoard.SIZE;
+        }
+
         public bool IsEmpty(int x, int y)
         {
             return this.Figures[x, y] == null;

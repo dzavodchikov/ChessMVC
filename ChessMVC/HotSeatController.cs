@@ -57,6 +57,10 @@ namespace ChessMVC
             {
                 throw new Exception("Please select " + this.board.NextTurn + " figure");
             }
+            if (figure.GetAvailableMoves(this.board).Count == 0)
+            {
+                throw new Exception("Please select another " + this.board.NextTurn + " figure");
+            }
             this.board.SelectedFigure = figure;
             this.board.FireUpdate();
         }

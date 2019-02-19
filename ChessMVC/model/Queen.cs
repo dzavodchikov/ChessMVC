@@ -28,7 +28,7 @@ namespace ChessMVC
                 {
                     if (dir < 2) { x++; } else { x--; }
                     if (dir % 2 == 0) { y++; } else { y--; }
-                    if (x < 0 || y < 0 || x >= ChessBoard.SIZE || y >= ChessBoard.SIZE)
+                    if (!board.IsValid(x, y))
                     {
                         break;
                     }
@@ -62,7 +62,7 @@ namespace ChessMVC
                     {
                         if (dir % 2 == 0) { y++; } else { y--; }
                     }
-                    if (x < 0 || y < 0 || x >= ChessBoard.SIZE || y >= ChessBoard.SIZE)
+                    if (!board.IsValid(x, y))
                     {
                         break;
                     }
