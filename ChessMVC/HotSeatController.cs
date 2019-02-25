@@ -50,7 +50,7 @@ namespace ChessMVC
             this.board.Turns.Add(this.CreateTurn(figure, from, to));
             this.board.NextTurn = currentTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
             this.checkEndOfGame(currentTurn);
-            this.board.FireUpdate();
+            this.board.OnChessBoardChanged();
         }
 
         private void checkEndOfGame(Color color)
@@ -96,7 +96,7 @@ namespace ChessMVC
                 throw new Exception("Please select another " + this.board.NextTurn + " figure");
             }
             this.board.SelectedFigure = figure;
-            this.board.FireUpdate();
+            this.board.OnChessBoardChanged();
         }
 
         private string CreateTurn(Figure figure, Square from, Square to)

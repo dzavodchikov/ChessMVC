@@ -17,7 +17,7 @@ namespace TestChessMVC
             view.OnFigureMove += controller.MoveTo;
 
             int viewUpdateCount = 0;
-            board.OnChanged += () => {
+            board.ChessBoardChanged += () => {
                 viewUpdateCount++;
             };
 

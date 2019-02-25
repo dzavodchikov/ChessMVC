@@ -17,7 +17,7 @@ namespace ChessMVC
         public IList<String> Turns { get; set; } 
         public Color? Winner { get; set; }
 
-        public event ChessBoardChanged OnChanged;
+        public event ChessBoardChangedHandler ChessBoardChanged;
 
         public ChessBoard()
         {
@@ -65,9 +65,9 @@ namespace ChessMVC
             this.CapturedFigures.Add(figure);
         }
 
-        public void FireUpdate()
+        public void OnChessBoardChanged()
         {
-            this.OnChanged();
+            this.ChessBoardChanged();
         }
 
         public bool IsValid(int x, int y)
@@ -92,6 +92,6 @@ namespace ChessMVC
 
     }
 
-    public delegate void ChessBoardChanged();
+    public delegate void ChessBoardChangedHandler();
 
 }

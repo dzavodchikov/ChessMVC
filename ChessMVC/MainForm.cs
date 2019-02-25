@@ -44,7 +44,7 @@ namespace ChessMVC
                 this.OnFigureMove -= this.controller.MoveTo;
             }
             this.board = new ChessBoard();
-            this.board.OnChanged += this.Refresh;
+            this.board.ChessBoardChanged += this.Refresh;
             this.controller = new HotSeatController(this.board);
             this.OnFigureSelected += this.controller.Select;
             this.OnFigureMove += this.controller.MoveTo;

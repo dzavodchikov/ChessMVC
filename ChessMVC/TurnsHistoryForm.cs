@@ -18,7 +18,7 @@ namespace ChessMVC
         {
             InitializeComponent();
             this.board = board;
-            this.board.OnChanged += this.UpdateHistory;
+            this.board.ChessBoardChanged += this.UpdateHistory;
         }
 
         private void TurnsHistoryForm_Load(object sender, EventArgs e)
